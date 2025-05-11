@@ -25,10 +25,10 @@ jobs:
       - name: Apply Kubernetes manifests
         shell: powershell
         run: |
-          kubectl apply -f k8s/namespace.yaml
-          kubectl apply -f k8s/mongo.yaml
-          kubectl apply -f k8s/backend.yaml
-          kubectl apply -f k8s/frontend.yaml
+            kubectl apply -f todo-mern-af1de28439f0f0c780b68df1d0f5a10bb3a84a09/k8s/namespace.yaml
+            kubectl apply -f todo-mern-af1de28439f0f0c780b68df1d0f5a10bb3a84a09/k8s/mongo
+            kubectl apply -f todo-mern-af1de28439f0f0c780b68df1d0f5a10bb3a84a09/k8s/backend
+            kubectl apply -f todo-mern-af1de28439f0f0c780b68df1d0f5a10bb3a84a09/k8s/frontend
 
       - name: Wait for deployments to finish
         shell: powershell
