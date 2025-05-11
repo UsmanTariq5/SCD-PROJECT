@@ -24,8 +24,8 @@ jobs:
       - name: Build & push backend
         uses: docker/build-push-action@v4
         with:
-          context: ./backend
-          file: ./backend/Dockerfile
+          context: ./todo-mern-af1de28439f0f0c780b68df1d0f5a10bb3a84a09/backend
+          file: ./todo-mern-af1de28439f0f0c780b68df1d0f5a10bb3a84a09/backend/Dockerfile
           push: true
           tags: usman134/todo-backend:latest
 
@@ -33,7 +33,7 @@ jobs:
       - name: Build & push frontend
         uses: docker/build-push-action@v4
         with:
-          context: ./frontend
-          file: ./frontend/Dockerfile
+          context: ./todo-mern-af1de28439f0f0c780b68df1d0f5a10bb3a84a09/frontend
+          file: ./todo-mern-af1de28439f0f0c780b68df1d0f5a10bb3a84a09/frontend/Dockerfile
           push: true
           tags: usman134/todo-frontend:latest
