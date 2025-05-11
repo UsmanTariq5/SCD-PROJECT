@@ -1,0 +1,37 @@
+name: Deploy to Minikube
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: [ self-hosted, windows ]
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Ensure Minikube is running
+        shell: powershell
+        run: |
+          if (-not (minikube status)) { minikube start }
+
+      - name: Set kubectl context to Minikube
+        shell: powershell
+        run: |
+          kubectl config use-context minikube
+
+      - name: Apply Kubernetes manifests
+        shell: powershell
+        run: |
+          kubectl apply -f k8s/namespace.yaml
+          kubectl apply -f k8s/mongo.yaml
+          kubectl apply -f k8s/backend.yaml
+          kubectl apply -f k8s/frontend.yaml
+
+      - name: Wait for deployments to finish
+        shell: powershell
+        run: |
+          kubectl rollout status deployment/todo-backend-dep -n todo-app
+          kubectl rollout status deployment/todo-frontend-dep -n todo-app
